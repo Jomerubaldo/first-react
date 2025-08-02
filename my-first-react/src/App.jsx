@@ -1,11 +1,9 @@
-function App() {
-  const message = () => {
-    alert('Mag aral ka ng mabuti boi!');
-  };
+import MyButton from './components/MyButton';
 
+function App() {
   return (
     <>
-      <button onClick={message}>Click me</button>
+      <MyButton />
     </>
   );
 }
