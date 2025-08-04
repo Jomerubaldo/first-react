@@ -1,36 +1,44 @@
 import { useState } from 'react';
 
 function App() {
-  const [color, setColor] = useState('');
+  const [fruits, setFruits] = useState(['Banana', 'Apple', 'Orange']);
+  const [isChecked, setIsChecked] = useState(false);
 
-  const handleBlue = () => {
-    setColor('Blue');
+  const handleShow = () => {
+    setIsChecked(!isChecked);
   };
 
-  const handleRed = () => {
-    setColor('Red');
+  const handleAddFruits = () => {
+    setFruits((fruits) => [...fruits, 'Melon']);
+  };
+
+  const handleRemoveFruits = (fruitIndex) => {
+    const filteredFruits = fruits.filter(
+      (fruit, index) => index !== fruitIndex
+    );
+    setFruits(filteredFruits);
   };
 
   return (
     <>
-      <h1>My favorite color is {color}</h1>
-
-      <div className="space-x-2">
-        <button
-          className="bg-blue-400 px-3 py-1"
-          type="button"
-          onClick={handleBlue}
-        >
-          Blue
-        </button>
-        <button
-          className="bg-red-400 px-3 py-1"
-          type="button"
-          onClick={handleRed}
-        >
-          Red
-        </button>
+      <div>
+        <label>Show</label>
+        <input type="checkbox" onChange={handleShow} checked={isChecked} />
       </div>
+      <button onClick={handleAddFruits}>Add fruits</button>
+      <ul>
+        {isChecked &&
+          fruits.map((fruit, index) => {
+            return (
+              <div key={index}>
+                <li>{fruit}</li>
+                <button onClick={() => handleRemoveFruits(index)}>
+                  Remove fruits
+                </button>
+              </div>
+            );
+          })}
+      </ul>
     </>
   );
 }
