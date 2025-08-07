@@ -1,4 +1,4 @@
-# canban board
+# kanban board
 
 ## not done yet i want to learn more javascript vanilla
 
